@@ -9,7 +9,7 @@
       <jdbc-url>jdbc:oracle:thin:@dbmanage.lab.ii.agh.edu.pl:1521:DBMANAGE</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ProductsDatabase" uuid="3452918d-7034-4c9b-909a-ba20a4b911ec">
+    <data-source source="LOCAL" name="ProductsDatabase" uuid="50cff81e-8e65-4d4c-a731-20d53a487aa7">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
