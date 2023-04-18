@@ -10,7 +10,12 @@ namespace JakubSzaredkoEFProducts
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public int  UnitsOnStock { get; set; }
-        public Supplier Supplier { get; set; }
+        public int UnitsOnStock { get; set; }
+        public ICollection<Supplier> Suppliers { get; set; }
+
+        public Product()
+        {
+            Suppliers = new List<Supplier>();
+        }
     }
 }

@@ -12,13 +12,14 @@ namespace JakubSzaredkoEFProducts
     {
         public int SupplierID { get; set; }
         public string CompanyName { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
+        public string? Street { get; set; }
+        public string? City { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public Product? Product { get; set; }
 
-        public Supplier() {
-            Products = new List<Product>();
+        public Supplier()
+        {
+            //Products = new List<Product>();
         }
     }
 }
