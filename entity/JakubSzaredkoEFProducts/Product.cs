@@ -12,15 +12,17 @@ namespace JakubSzaredkoEFProducts
         public string ProductName { get; set; }
         public int UnitsOnStock { get; set; }
         public List<Supplier> Suppliers { get; } = new();
+        public List<Invoice> Invoices { get; } = new();
 
         public Product()
         {
             ProductName = string.Empty;
         }
 
-        public Product(string productName)
+        public Product(string productName, int unitsOnStock)
         {
             ProductName = productName;
+            UnitsOnStock = unitsOnStock;
         }
     }
 }
