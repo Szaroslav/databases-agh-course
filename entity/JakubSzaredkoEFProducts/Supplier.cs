@@ -8,13 +8,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JakubSzaredkoEFProducts
 {
-    internal class Supplier
+    internal class Supplier : Company
     {
-        public int SupplierID { get; set; }
-        public string CompanyName { get; set; }
-        public string? Street { get; set; }
-        public string? City { get; set; }
-
+        public string BankAccountNumber;
         public List<Product> Products { get; } = new();
     }
 }

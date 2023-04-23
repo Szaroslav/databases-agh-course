@@ -15,8 +15,22 @@
             invoices.Add(new Invoice(1));
             invoices.Add(new Invoice(4));
 
-            Supplier supplier = new Supplier() {
-                CompanyName = "Krakow Trans", City = "Czestochowa", Street = "Jasnogorska 333"
+            Supplier supplier = new Supplier()
+            {
+                CompanyName = "Krakow Trans",
+                Street = "Jasnogorska 333",
+                City = "Czestochowa",
+                ZipCode = "21-370",
+                BankAccountNumber = "000000"
+            };
+
+            Customer customer = new Customer()
+            {
+                CompanyName = "Krowodrza Pirates",
+                Street = "Krowoderska 100",
+                City = "Mszana Dolna",
+                ZipCode = "34-730",
+                Discount = .2f
             };
 
             products[0].Invoices.Add(invoices[0]);
@@ -41,6 +55,7 @@
                 productContext.Invoices.Add(invoice);
             }
             productContext.Suppliers.Add(supplier);
+            productContext.Customers.Add(customer);
             
             productContext.SaveChanges();
         }
