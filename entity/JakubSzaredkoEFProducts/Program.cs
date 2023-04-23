@@ -13,7 +13,7 @@
 
             List<Invoice> invoices = new();
             invoices.Add(new Invoice(1));
-            invoices.Add(new Invoice(4));
+            invoices.Add(new Invoice(3));
 
             Supplier supplier = new Supplier()
             {

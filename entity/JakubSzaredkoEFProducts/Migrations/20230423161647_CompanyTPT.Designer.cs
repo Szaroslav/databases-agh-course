@@ -2,6 +2,7 @@
 using JakubSzaredkoEFProducts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JakubSzaredkoEFProducts.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    partial class ProductContextModelSnapshot : ModelSnapshot
+    [Migration("20230423161647_CompanyTPT")]
+    partial class CompanyTPT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -34,7 +37,6 @@ namespace JakubSzaredkoEFProducts.Migrations
             modelBuilder.Entity("JakubSzaredkoEFProducts.Company", b =>
                 {
                     b.Property<int>("CompanyID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("City")
@@ -42,10 +44,6 @@ namespace JakubSzaredkoEFProducts.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -61,9 +59,7 @@ namespace JakubSzaredkoEFProducts.Migrations
 
                     b.ToTable("Companies");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Company");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTpcMappingStrategy();
                 });
 
             modelBuilder.Entity("JakubSzaredkoEFProducts.Invoice", b =>
@@ -117,14 +113,14 @@ namespace JakubSzaredkoEFProducts.Migrations
                 {
                     b.HasBaseType("JakubSzaredkoEFProducts.Company");
 
-                    b.HasDiscriminator().HasValue("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("JakubSzaredkoEFProducts.Supplier", b =>
                 {
                     b.HasBaseType("JakubSzaredkoEFProducts.Company");
 
-                    b.HasDiscriminator().HasValue("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("InvoiceProduct", b =>
