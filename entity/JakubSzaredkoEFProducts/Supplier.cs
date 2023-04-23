@@ -15,11 +15,6 @@ namespace JakubSzaredkoEFProducts
         public string? Street { get; set; }
         public string? City { get; set; }
 
-        public Product? Product { get; set; }
-
-        public Supplier()
-        {
-            //Products = new List<Product>();
-        }
+        public List<Product> Products { get; } = new();
     }
 }
