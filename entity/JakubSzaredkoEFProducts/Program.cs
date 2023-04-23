@@ -6,26 +6,24 @@
         {
             ProductContext productContext = new ProductContext();
 
-            Console.WriteLine("Enter a new supplier [company name;street;city]");
-            string[] supplierData = Console.ReadLine().Split(';');
+            List<Product> products = new();
+            products.Add(new Product("Yogurt"));
+            products.Add(new Product("Beer"));
+            products.Add(new Product("Hard drugs"));
 
-            Supplier supplier = new Supplier
-            {
-                CompanyName = supplierData[0],
-                Street = supplierData[1],
-                City = supplierData[2]
+            Supplier supplier = new Supplier() {
+                CompanyName = "Krakow Trans", City = "Czestochowa", Street = "Jasnogorska 333"
             };
 
-            Console.WriteLine("Enter a new product name");
-            string productName = Console.ReadLine();
+            foreach (Product product in products)
+            {
+                supplier.Products.Add(product);
+                product.Suppliers.Add(supplier);
 
-            Product product = new Product { ProductName = productName };
-            product.Suppliers.Add(supplier);
-            productContext.Products.Add(product);
-
-            supplier.Product = product;
+                productContext.Products.Add(product);
+            }
             productContext.Suppliers.Add(supplier);
-            
+
             productContext.SaveChanges();
         }
     }
