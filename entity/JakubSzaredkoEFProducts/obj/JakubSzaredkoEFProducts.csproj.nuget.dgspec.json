@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jakub\\Desktop\\studia\\4s\\databases\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj": {}
+    "C:\\Users\\Jakub\\Desktop\\Studia\\4s\\databases\\databases-agh-course\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jakub\\Desktop\\studia\\4s\\databases\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj": {
+    "C:\\Users\\Jakub\\Desktop\\Studia\\4s\\databases\\databases-agh-course\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jakub\\Desktop\\studia\\4s\\databases\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj",
+        "projectUniqueName": "C:\\Users\\Jakub\\Desktop\\Studia\\4s\\databases\\databases-agh-course\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj",
         "projectName": "JakubSzaredkoEFProducts",
-        "projectPath": "C:\\Users\\Jakub\\Desktop\\studia\\4s\\databases\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj",
+        "projectPath": "C:\\Users\\Jakub\\Desktop\\Studia\\4s\\databases\\databases-agh-course\\entity\\JakubSzaredkoEFProducts\\JakubSzaredkoEFProducts.csproj",
         "packagesPath": "C:\\Users\\Jakub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jakub\\Desktop\\studia\\4s\\databases\\entity\\JakubSzaredkoEFProducts\\obj\\",
+        "outputPath": "C:\\Users\\Jakub\\Desktop\\Studia\\4s\\databases\\databases-agh-course\\entity\\JakubSzaredkoEFProducts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jakub\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,17 +42,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             }
           },
           "imports": [
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

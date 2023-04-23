@@ -27,15 +27,6 @@
             productContext.Suppliers.Add(supplier);
             
             productContext.SaveChanges();
-
-            /*Console.WriteLine("\nList of all products stored in the database:");
-
-            IQueryable<Product> query = from prod in productContext.Products select prod;
-            foreach (Product p in query)
-            {
-                supplier.Product = p;
-                p.Suppliers.Add(supplier);
-            }*/
         }
     }
 }
