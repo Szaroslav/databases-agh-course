@@ -1,20 +1,18 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class Supplier {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long SupplierID;
     private String CompanyName;
     private String Street;
     private String City;
-    @OneToMany(mappedBy = "supplier")
-    private final List<Product> products = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "ProductID")
+    private Product product;
 
     public Supplier() {  }
 
@@ -56,7 +54,11 @@ public class Supplier {
         City = city;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
