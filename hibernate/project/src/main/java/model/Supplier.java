@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Supplier {
@@ -13,6 +15,8 @@ public class Supplier {
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product product;
+    @OneToMany(mappedBy = "supplier")
+    private final List<Product> products = new ArrayList<>();
 
     public Supplier() {  }
 
@@ -60,5 +64,9 @@ public class Supplier {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 }

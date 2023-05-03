@@ -39,6 +39,9 @@ public class Main {
 
         for (Product product : products) {
             product.getSuppliers().add(supplier);
+            product.setSupplier(supplier);
+            supplier.getProducts().add(product);
+            supplier.setProduct(product);
         }
 
         try {
@@ -50,7 +53,6 @@ public class Main {
             for (Product product : products) {
                 session.save(product);
             }
-
 
             tx.commit();
             session.close();
