@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -28,23 +29,28 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         final Session session = getSession();
-        Supplier supplier = new Supplier("Kraków HomoTrans", "Stefana Batorego 4", "Kraków");
-        supplier.setSupplierID(0L);
-//        Product product = new Product("Strawberries", 2137, supplier);
+
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Bananas", 500));
+        products.add(new Product("Pumpkins", 100));
+        products.add(new Product("Coconuts", 3000));
+
+        Supplier supplier = new Supplier("Kraków Speed", "Warszawska 33", "Kraków");
+
+        for (Product product : products) {
+            product.getSuppliers().add(supplier);
+        }
 
         try {
         } finally {
             Transaction tx = session.beginTransaction();
 
+            // Add to database new supplier and products
             session.save(supplier);
-
-            // Get all products from Product table, add every available product new created supplier
-            List<Product> products = session.createQuery("SELECT a FROM Product a", Product.class).getResultList();
-            for (Product p : products) {
-                p.setSupplier(supplier);
-                supplier.getProducts().add(p);
-                session.save(p);
+            for (Product product : products) {
+                session.save(product);
             }
+
 
             tx.commit();
             session.close();

@@ -1,26 +1,25 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ProductID;
     private String ProductName;
     private int UnitsOnStock;
-    @ManyToOne
-    @JoinColumn(name = "SupplierID")
-    private Supplier supplier;
+
+    @OneToMany(mappedBy = "product")
+    private final List<Supplier> suppliers = new ArrayList<>();
 
     public Product() {  }
 
-    public Product(String name, int unitsOnStock, Supplier supplier) {
+    public Product(String name, int unitsOnStock) {
         ProductName = name;
         UnitsOnStock = unitsOnStock;
-        this.supplier = supplier;
     }
 
     public Long getProductID() {
@@ -47,11 +46,7 @@ public class Product {
         UnitsOnStock = unitsOnStock;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public List<Supplier> getSuppliers() {
+        return suppliers;
     }
 }
