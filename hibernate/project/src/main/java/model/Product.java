@@ -13,11 +13,16 @@ public class Product {
     private int UnitsOnStock;
 
     @ManyToOne
-    @JoinColumn(name = "Supplier")
+    @JoinColumn(name = "SupplierID")
     private Supplier supplier;
     @ManyToOne
-    @JoinColumn(name = "Category")
+    @JoinColumn(name = "CategoryID")
     private Category category;
+    @ManyToOne
+    @JoinColumn(name = "InvoiceID")
+    private Invoice invoice;
+    @OneToMany(mappedBy = "product")
+    private final List<Invoice> invoices = new ArrayList<>();
     @OneToMany(mappedBy = "product")
     private final List<Supplier> suppliers = new ArrayList<>();
 
@@ -66,6 +71,18 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
     public List<Supplier> getSuppliers() {

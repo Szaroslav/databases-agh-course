@@ -5,37 +5,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category {
+public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
-    private String name;
+    private Long InvoiceID;
+    private int quantity;
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product product;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "invoice")
     private final List<Product> products = new ArrayList<>();
 
-    public Category() {  }
+    public Invoice() {  }
 
-    public Category(String name) {
-        this.name = name;
+    public Invoice(int quantity) {
+        this.quantity = quantity;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getInvoiceID() {
+        return InvoiceID;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setInvoiceID(Long invoiceID) {
+        InvoiceID = invoiceID;
     }
 
-    public String getName() {
-        return name;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Product getProduct() {
