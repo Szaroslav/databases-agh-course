@@ -15,6 +15,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "Supplier")
     private Supplier supplier;
+    @ManyToOne
+    @JoinColumn(name = "Category")
+    private Category category;
     @OneToMany(mappedBy = "product")
     private final List<Supplier> suppliers = new ArrayList<>();
 
@@ -55,6 +58,14 @@ public class Product {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Supplier> getSuppliers() {
