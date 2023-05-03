@@ -1,3 +1,4 @@
+import model.Category;
 import model.Product;
 import model.Supplier;
 import org.hibernate.HibernateException;
@@ -30,29 +31,38 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         final Session session = getSession();
 
-        List<Product> products = new ArrayList<>();
-        products.add(new Product("Bananas", 500));
-        products.add(new Product("Pumpkins", 100));
-        products.add(new Product("Coconuts", 3000));
-
         Supplier supplier = new Supplier("Kraków Speed", "Warszawska 33", "Kraków");
 
-        for (Product product : products) {
-            product.getSuppliers().add(supplier);
-            product.setSupplier(supplier);
-            supplier.getProducts().add(product);
-            supplier.setProduct(product);
-        }
+        List<Category> categories = new ArrayList<>();
+        categories.add(new Category("Fruit"));
+        categories.add(new Category("Vegetable"));
+
+        Product product = new Product("Cucumbers", 10);
+        product.setCategory(categories.get(1));
 
         try {
         } finally {
             Transaction tx = session.beginTransaction();
 
-            // Add to database new supplier and products
-            session.save(supplier);
-            for (Product product : products) {
-                session.save(product);
+            session.save(product);
+
+            for (Category category : categories) {
+                session.save(category);
             }
+
+            product = session.load(Product.class, 1L);
+            product.setCategory(categories.get(0));
+            session.save(product);
+
+            product = session.load(Product.class, 2L);
+            product.setCategory(categories.get(0));
+            session.save(product);
+
+            product = session.load(Product.class, 3L);
+            product.setCategory(categories.get(0));
+            session.save(product);
+
+            session.save(supplier);
 
             tx.commit();
             session.close();
