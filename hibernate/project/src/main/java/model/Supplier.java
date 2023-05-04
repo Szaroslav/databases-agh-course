@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Supplier {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long SupplierID;
-    private String CompanyName;
-    @OneToOne
-    private Address address;
+public class Supplier extends Company {
+    private String bankAccountNumber;
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product product;
@@ -20,33 +15,17 @@ public class Supplier {
 
     public Supplier() {  }
 
-    public Supplier(String companyName, String street, String city) {
-        CompanyName = companyName;
-        address = new Address(street, city);
+    public Supplier(String companyName, String street, String city, String zipCode, String bankAccountNumber) {
+        super(companyName, street, city, zipCode);
+        this.bankAccountNumber = bankAccountNumber;
     }
 
-    public Long getSupplierID() {
-        return SupplierID;
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
     }
 
-    public void setSupplierID(Long supplierID) {
-        SupplierID = supplierID;
-    }
-
-    public String getCompanyName() {
-        return CompanyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
     }
 
     public Product getProduct() {

@@ -1,7 +1,4 @@
-import model.Category;
-import model.Invoice;
-import model.Product;
-import model.Supplier;
+import model.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,7 +34,20 @@ public class Main {
         products.add(new Product("Pumpkins", 100));
         products.add(new Product("Coconuts", 3000));
 
-        Supplier supplier = new Supplier("Kraków Speed", "Warszawska 33", "Kraków");
+        Supplier supplier = new Supplier(
+            "Kraków Speed",
+            "Warszawska 33",
+            "Kraków",
+            "02-137",
+            "002137420"
+        );
+        Customer customer = new Customer(
+            "Mszana Dolna Lubogoszcz",
+            "Spadochroniarzy 3",
+            "Mszana Dolna",
+            "34-730",
+            .1f
+        );
 
         List<Category> categories = new ArrayList<>();
         categories.add(new Category("Fruit"));
@@ -69,6 +79,7 @@ public class Main {
 
             // Add to database new records
             session.save(supplier);
+            session.save(customer);
             for (Product product : products) {
                 session.save(product);
             }
