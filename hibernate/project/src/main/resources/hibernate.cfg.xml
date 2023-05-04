@@ -17,5 +17,6 @@
     <mapping class="model.Supplier"/>
     <mapping class="model.Category"/>
     <mapping class="model.Invoice"/>
+    <mapping class="model.Address"/>
   </session-factory>
 </hibernate-configuration>

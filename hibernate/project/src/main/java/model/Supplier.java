@@ -10,8 +10,8 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long SupplierID;
     private String CompanyName;
-    private String Street;
-    private String City;
+    @OneToOne
+    private Address address;
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product product;
@@ -22,8 +22,7 @@ public class Supplier {
 
     public Supplier(String companyName, String street, String city) {
         CompanyName = companyName;
-        Street = street;
-        City = city;
+        address = new Address(street, city);
     }
 
     public Long getSupplierID() {
@@ -42,20 +41,12 @@ public class Supplier {
         CompanyName = companyName;
     }
 
-    public String getStreet() {
-        return Street;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        Street = street;
-    }
-
-    public String getCity() {
-        return City;
-    }
-
-    public void setCity(String city) {
-        City = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Product getProduct() {
