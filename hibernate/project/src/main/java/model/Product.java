@@ -21,7 +21,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "InvoiceID")
     private Invoice invoice;
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REFRESH)
     private final List<Invoice> invoices = new ArrayList<>();
     @OneToMany(mappedBy = "product")
     private final List<Supplier> suppliers = new ArrayList<>();
