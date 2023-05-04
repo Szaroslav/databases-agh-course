@@ -13,7 +13,7 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product product;
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.REFRESH)
     private final List<Product> products = new ArrayList<>();
 
     public Invoice() {  }
