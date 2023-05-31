@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>hibernate</artifactId>
+    <artifactId>project</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>hibernate</name>
+    <name>project</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,6 +21,18 @@
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

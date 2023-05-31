@@ -1,20 +1,45 @@
 package model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
-    public int ProductID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ProductID;
+    private String ProductName;
+    private int UnitsOnStock;
 
-    public int getProductID() {
+    @ManyToOne
+    @JoinColumn(name = "SupplierID")
+    private Supplier supplier;
+    @ManyToOne
+    @JoinColumn(name = "CategoryID")
+    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "InvoiceID")
+    private Invoice invoice;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REFRESH)
+    private final List<Invoice> invoices = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private final List<Supplier> suppliers = new ArrayList<>();
+
+    public Product() {  }
+
+    public Product(String name, int unitsOnStock) {
+        ProductName = name;
+        UnitsOnStock = unitsOnStock;
+    }
+
+    public Long getProductID() {
         return ProductID;
     }
 
-    public void setProductID(int productID) {
+    public void setProductID(Long productID) {
         ProductID = productID;
     }
-
-    public String ProductName;
 
     public String getProductName() {
         return ProductName;
@@ -24,8 +49,6 @@ public class Product {
         ProductName = productName;
     }
 
-    public int UnitsOnStock;
-
     public int getUnitsOnStock() {
         return UnitsOnStock;
     }
@@ -34,10 +57,35 @@ public class Product {
         UnitsOnStock = unitsOnStock;
     }
 
-    public Product() {  }
+    public Supplier getSupplier() {
+        return supplier;
+    }
 
-    public Product(String name, int unitsOnStock) {
-        ProductName = name;
-        UnitsOnStock = unitsOnStock;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
     }
 }
