@@ -28,3 +28,49 @@ db.getCollection('business').aggregate(
 );
 
 // c)
+db.getCollection('tip').aggregate([
+    {
+        $lookup: {
+            from: 'business',
+            localField: 'business_id',
+            foreignField: 'business_id',
+            as: 'business'
+        }
+    },
+    {
+        $project: {
+            'business_name': { $first: '$business.name' },
+            'date': { $dateFromString: { dateString: '$date' } }
+        }
+    },
+    {
+        $project: {
+            'business_name': '$business_name',
+            'year': { $year: '$date' }
+        }
+    },
+    { $match: { 'year': { $eq: 2012 } } },
+    { $group: {
+        '_id': '$business_name',
+        'tip_count': { $count: {} }
+    } },
+    { $sort: { 'tip_count': -1 } }
+]);
+
+// d)
+db.getCollection('review').aggregate([
+    { 
+        $project: {
+            'votes': { $objectToArray: '$votes' }
+        }
+    },
+    { $unwind: '$votes' },
+    { $match: { 'votes.v': { $gt: 0 } } },
+    {
+        $group: {
+            '_id': '$votes.k',
+            'count': { $count: {} },
+            'total': { $sum: '$votes.v' }
+        }
+    }
+]);
