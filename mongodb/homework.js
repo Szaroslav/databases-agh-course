@@ -1,4 +1,5 @@
-// Zadanie 1
+// Zadanie 1. Operacje wyszukiwania danych.
+
 // a)
 db.getCollection('business').find(
     {
@@ -21,40 +22,39 @@ db.getCollection('business').find(
 // b)
 db.getCollection('business').aggregate(
     [
-        { $match: { 'categories': { $in: [ 'Hotels & Travel', 'Hotels' ] } } },
-        { $group: { '_id': '$city', 'hotel_count': { $count: {} } } },
+        { $match: { 'categories': {
+            $in: [ 'Hotels & Travel', 'Hotels' ]
+        } } },
+        { $group: {
+            '_id': '$city',
+            'hotel_count': { $count: {} }
+        } },
         { $sort: { 'hotel_count': -1 } }
     ]
 );
 
 // c)
 db.getCollection('tip').aggregate([
+    { $match: { 'date': { $regex: /^2012/ } } },
+    { $group: {
+        '_id': '$business_id',
+        'tip_count': { $count: {} }
+    } },
     {
         $lookup: {
             from: 'business',
-            localField: 'business_id',
+            localField: '_id',
             foreignField: 'business_id',
             as: 'business'
         }
     },
+    { $sort: { 'tip_count': -1 } },
     {
         $project: {
             'business_name': { $first: '$business.name' },
-            'date': { $dateFromString: { dateString: '$date' } }
+            'tip_count': 1
         }
-    },
-    {
-        $project: {
-            'business_name': '$business_name',
-            'year': { $year: '$date' }
-        }
-    },
-    { $match: { 'year': { $eq: 2012 } } },
-    { $group: {
-        '_id': '$business_name',
-        'tip_count': { $count: {} }
-    } },
-    { $sort: { 'tip_count': -1 } }
+    }
 ]);
 
 // d)
@@ -74,3 +74,63 @@ db.getCollection('review').aggregate([
         }
     }
 ]);
+
+// e)
+db.getCollection('user').aggregate([
+    {
+        $match: {
+            'votes.funny': 0,
+            'votes.useful': 0,
+            'type': 'user'
+        }
+    },
+    { $sort: { 'name': 1 } }
+]);
+
+// f)
+// 1
+db.getCollection('review').aggregate([
+    {
+        $group: {
+            '_id': '$business_id',
+            'stars_mean': { $avg: '$stars' }
+        }
+    },
+    { $match: { 'stars_mean': { $gt: 3 } } },
+    { $sort: { '_id': 1 } },
+]);
+
+// 2
+db.getCollection('review').aggregate([
+    {
+        $group: {
+            '_id': '$business_id',
+            'stars_mean': { $avg: '$stars' }
+        }
+    },
+    { $match: { 'stars_mean': { $gt: 3 } } },
+    {
+        $lookup: {
+            from: 'business',
+            localField: '_id',
+            foreignField: 'business_id',
+            pipeline: [{ $group: { '_id': '$name' } }],
+            as: 'business'
+        }
+    },
+    {
+        $project: {
+            '_id': 0,
+            'business_name': { $first: '$business._id' },
+            'stars_mean': 1
+        }
+    },
+    { $sort: { 'business_name': 1 } }
+]);
+
+////////////////////////////////////////////////////////////////////
+
+
+// Zadanie 2. Modelowanie danych.
+
+// a)
