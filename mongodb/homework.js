@@ -134,3 +134,74 @@ db.getCollection('review').aggregate([
 // Zadanie 2. Modelowanie danych.
 
 // a)
+// 1
+// Lecturers
+const exampleLecturer = {
+    "personalDetails": {
+        "firstName": "John",
+        "lastName": "Doe"
+        // pozostałe dane, nr telefonu, email uczelniany itd.
+        // ...
+    },
+    "faculty": "Faculty of Computer Science, Electronics nad Telecomunications",
+    "degree": "Doctor of Philosophy",
+    "roles": [
+        "Head of the department"
+        // ...
+    ],
+    "taughtCourses": [
+        ObjectId("_id_course_0"),
+        ObjectId("_id_course_1")
+        // ...
+    ]
+};
+
+// Courses
+const exampleCourse = {
+    "name": "Data Structures and Algorithms",
+    "academicYear": [ 2021, 2022 ],
+    "description": "Algorithms, yeah.",
+    "participants": [
+        ObjectId("_id_student_0"),
+        ObjectId("_id_student_1"),
+        ObjectId("_id_student_2"),
+        ObjectId("_id_student_3"),
+        ObjectId("_id_student_4")
+        // ...
+    ],
+    "reviews": [
+        {
+            "value": 10,
+            "date": new Date(),
+            "comment": "Yeah, cool.",
+            "issuedBy": ObjectId("_id_anne_kowalski"),
+        }
+    ]
+};
+
+// Students
+const exampleStudent = {
+    "personalDetails": {
+        "firstName": "Anne",
+        "lastName": "Kowalski"
+        // pozostałe dane, nr telefonu, email uczelniany itd.
+        // ...
+    },
+    "major": "Computer Science", 
+    "faculty": "Faculty of Computer Science, Electronics nad Telecomunications",
+    "participatedCourses": [
+        ObjectId("_id_course_0"),
+        ObjectId("_id_course_1"),
+        ObjectId("_id_course_2")
+        // ...
+    ],
+    "grades": [
+        {
+            "value": 4.5,
+            "date": new Date(),
+            "issuedBy": ObjectId("_id_john_doe"),
+            "courseId": ObjectId("_id_dsa_course")
+        }
+        // ...
+    ]
+};
