@@ -136,14 +136,16 @@ db.getCollection('review').aggregate([
 // a)
 // 1
 // Lecturers
-const exampleLecturer = {
+const exampleLecturer1 = {
     "personalDetails": {
         "firstName": "John",
-        "lastName": "Doe"
+        "lastName": "Doe",
+        "realLifeId": "532214321",
+        "nationality": "Scottish"
         // pozostałe dane, nr telefonu, email uczelniany itd.
         // ...
     },
-    "faculty": "Faculty of Computer Science, Electronics nad Telecomunications",
+    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
     "degree": "Doctor of Philosophy",
     "roles": [
         "Head of the department"
@@ -157,7 +159,7 @@ const exampleLecturer = {
 };
 
 // Courses
-const exampleCourse = {
+const exampleCourse1 = {
     "name": "Data Structures and Algorithms",
     "academicYear": [ 2021, 2022 ],
     "description": "Algorithms, yeah.",
@@ -180,19 +182,170 @@ const exampleCourse = {
 };
 
 // Students
-const exampleStudent = {
+const exampleStudent1 = {
     "personalDetails": {
         "firstName": "Anne",
-        "lastName": "Kowalski"
+        "lastName": "Kowalski",
+        "realLifeId": "00211388482",
+        "nationality": "Polish"
         // pozostałe dane, nr telefonu, email uczelniany itd.
         // ...
     },
     "major": "Computer Science", 
-    "faculty": "Faculty of Computer Science, Electronics nad Telecomunications",
+    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
     "participatedCourses": [
         ObjectId("_id_course_0"),
         ObjectId("_id_course_1"),
         ObjectId("_id_course_2")
+        // ...
+    ],
+    "grades": [
+        {
+            "value": 4.5,
+            "date": new Date(),
+            "issuedBy": ObjectId("_id_john_doe"),
+            "courseId": ObjectId("_id_dsa_course")
+        }
+        // ...
+    ]
+};
+
+// 3)
+const exampleLecturer3 = {
+    "personalDetails": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "realLifeId": "532214321",
+        "nationality": "Scottish"
+        // pozostałe dane, nr telefonu, email uczelniany itd.
+        // ...
+    },
+    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+    "degree": "Doctor of Philosophy",
+    "roles": [
+        "Head of the department"
+        // ...
+    ],
+    "taughtCourses": [
+        {
+            "name": "Data Structures and Algorithms",
+            "academicYear": [ 2021, 2022 ],
+            "description": "Algorithms, yeah.",
+            "participants": [
+                {
+                    "personalDetails": {
+                        "firstName": "Anne",
+                        "lastName": "Kowalski",
+                        "realLifeId": "00211388482",
+                        "nationality": "Polish"
+                        // pozostałe dane, nr telefonu, email uczelniany itd.
+                        // ...
+                    },
+                    "major": "Computer Science", 
+                    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+                }
+                // ...
+            ],
+            "reviews": [
+                {
+                    "value": 10,
+                    "date": new Date(),
+                    "comment": "Yeah, cool.",
+                    "issuedBy": {
+                        "personalDetails": {
+                            "firstName": "Anne",
+                            "lastName": "Kowalski",
+                            "realLifeId": "00211388482",
+                            "nationality": "Polish"
+                            // pozostałe dane, nr telefonu, email uczelniany itd.
+                            // ...
+                        },
+                        "major": "Computer Science", 
+                        "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+                    },
+                }
+            ]
+        }
+        // ...
+    ]
+};
+
+// Courses
+const exampleCourse3 = {
+    "name": "Data Structures and Algorithms",
+    "academicYear": [ 2021, 2022 ],
+    "description": "Algorithms, yeah.",
+    "participants": [
+        {
+            "personalDetails": {
+                "firstName": "Anne",
+                "lastName": "Kowalski",
+                "realLifeId": "00211388482",
+                "nationality": "Polish"
+                // pozostałe dane, nr telefonu, email uczelniany itd.
+                // ...
+            },
+            "major": "Computer Science", 
+            "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+            "participatedCourses": [
+
+                // ...
+            ],
+            "grades": [
+                {
+                    "value": 4.5,
+                    "date": new Date(),
+                    "issuedBy": ObjectId("_id_john_doe"),
+                    "courseId": ObjectId("_id_dsa_course")
+                }
+                // ...
+            ]
+        }
+        // ...
+    ],
+    "reviews": [
+        {
+            "value": 10,
+            "date": new Date(),
+            "comment": "Yeah, cool.",
+            "issuedBy": ObjectId("_id_anne_kowalski"),
+        }
+    ]
+};
+
+// Students
+const exampleStudent3 = {
+    "personalDetails": {
+        "firstName": "Anne",
+        "lastName": "Kowalski",
+        "realLifeId": "00211388482",
+        "nationality": "Polish"
+        // pozostałe dane, nr telefonu, email uczelniany itd.
+        // ...
+    },
+    "major": "Computer Science", 
+    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+    "participatedCourses": [
+        {
+            "name": "Data Structures and Algorithms",
+            "academicYear": [ 2021, 2022 ],
+            "description": "Algorithms, yeah.",
+            "participants": [
+                {
+                    "personalDetails": {
+                        "firstName": "Anne",
+                        "lastName": "Kowalski",
+                        "realLifeId": "00211388482",
+                        "nationality": "Polish"
+                        // pozostałe dane, nr telefonu, email uczelniany itd.
+                        // ...
+                    },
+                    "major": "Computer Science", 
+                    "faculty": "Faculty of Computer Science, Electronics and Telecomunications",
+                }
+                // ...
+            ],
+        }
         // ...
     ],
     "grades": [
