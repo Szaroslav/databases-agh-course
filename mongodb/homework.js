@@ -210,7 +210,7 @@ const exampleStudent1 = {
     ]
 };
 
-// 3)
+// 3
 const exampleLecturer3 = {
     "personalDetails": {
         "firstName": "John",
